@@ -43,4 +43,5 @@ body {
    margin: auto;
    text-align: center;
    background-color: lightblue;
+   opacity: 0;
 }

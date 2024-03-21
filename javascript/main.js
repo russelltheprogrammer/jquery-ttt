@@ -1,8 +1,5 @@
 $(document).ready( () => {
 
-    $('.hide').hide();
-
-
     $('#header-section h1').on('mouseenter', (event) => {
         $(event.currentTarget).css('color', 'red')
         .on('mouseleave', () => { 
@@ -10,11 +7,11 @@ $(document).ready( () => {
         });
     });
 
-    $('#secret-section').on('mouseenter', () => {
-        $('.hide').show()
-        // .on('mouseleave', () => {
-        //     $('.hide').hide();
-        // })
+    $('#secret-section').on('mouseenter', (event) => {
+        $(event.currentTarget).css('opacity', '1')
+        .on('mouseleave', () => {
+            $(event.currentTarget).css('opacity', '0')
+        })
     });
     
 });
