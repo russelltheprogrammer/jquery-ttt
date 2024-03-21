@@ -1,3 +1,46 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: pink;
+}
+
+#header-section {
+    text-align: center;
+}
+
+#header-section h1 {
+    margin-bottom: 0;
+}
+
+#header-section h2 {
+    margin-top: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#secret-section {
+   position: fixed;
+   bottom: 0;
+   width: 50%;
+   left: 50%;
+   transform: translateX(-50%);
+   margin: auto;
+   text-align: center;
+   background-color: lightblue;
 }
