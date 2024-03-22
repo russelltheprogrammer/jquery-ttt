@@ -13,6 +13,16 @@ body {
 
 #header-section h2 {
     margin-top: 0;
+    margin-bottom: 50px;
+}
+
+#player-turn {
+    text-align: center;
+    padding: 2px;
+    background-color:white;
+    width: 20%;
+    margin: auto;
+    font-size: 20px;
 }
 
 .grid-container-ttt {
@@ -22,7 +32,8 @@ body {
     padding: 5px;
     width: 80%;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 100px;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -33,6 +44,7 @@ body {
     font-size: 30px;
     text-align: center;
     font-weight: bold;
+    height: 30px;
 }
 
 .blue {
@@ -43,6 +55,20 @@ body {
     color: red;
 }
 
+.reset-button { 
+ margin-left: 80%;
+}
+.reset-button button { 
+ padding: 20px;
+ background-color: rgb(250, 46, 46);
+ color: white;
+ font-size: 20px;
+ font-weight: bold;
+ border: 3px solid black;
+ border-radius: 10%;
+ cursor: pointer;
+}
+   
 #secret-section {
    position: fixed;
    bottom: 0;

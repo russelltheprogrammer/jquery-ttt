@@ -19,18 +19,18 @@ $(document).ready( () => {
     // tic tac toe functionality
     $('.grid-item-ttt').on('click', (event) => {
         let xCount = 0;
-        let yCount = 0;
+        let oCount = 0;
         $('.grid-item-ttt').each((index, element) => {
             if($(element).text() === "O") {
                 xCount++;
             }
             if($(element).text()=== "X") {
-                yCount++;
+                oCount++;
             }
           
         });
         if($(event.currentTarget).text() !== "X" && $(event.currentTarget).text() !== "O" ) {
-            if(xCount === yCount ) {
+            if(xCount === oCount) {
                 $(event.currentTarget).text('X').addClass('red');
             }
             else {
@@ -50,14 +50,42 @@ $(document).ready( () => {
                 checkWinnerArray.push(0);
             }
         });
-        checkThreeInARow(checkWinnerArray);
+        const finishCheck = checkThreeInARow(checkWinnerArray);
+        
+        if(finishCheck === "xwin") {
+            console.log("X Wins! Play again?");
+        }
+        else if (finishCheck === "owin") { 
+            console.log("O Wins! Play again?");
+        }
+        else if (finishCheck === "draw") { 
+            console.log("Draw! Play again?");
+        }
 
+        if(xCount === oCount) {
+            $('#player-turn span').removeClass();
+            $('#player-turn span').text('O').addClass('blue');
+         }
+         else {
+            $('#player-turn span').text('X').addClass('red');
+         }
     });
-    
+
+    //reset button
+    $('.reset-button button').on('click', () => {
+        $('.grid-item-ttt').map((index, element) => {
+            $(element).removeClass('red blue').text(' ')
+        });
+        $('#player-turn span').removeClass('red blue').addClass('red').text('X');
+    })
 });
 
-
 const checkThreeInARow = (array) => {
+    const xWin = "xwin";
+    const oWin = "owin";
+    const draw = "draw";
+    const continues = "continues";
+
     const winConditions = [
         [0, 1, 2], // Top row
         [3, 4, 5], // Middle row
@@ -72,13 +100,13 @@ const checkThreeInARow = (array) => {
     for (let i = 0; i < winConditions.length; i++) { 
         const [a, b, c] = winConditions[i];
         if(array[a] && array[a] === array[b] && array[a] === array[c]) {
-            return array[a] === 1 ? console.log('X WINS!') : console.log('O WINS!');
+            return array[a] === 1 ? xWin : oWin;
          }
     }
 
     if(!array.includes(0)) {
-        return console.log("DRAW! PLAY AGAIN?");
+        return draw;
     }
 
-    return console.log("GAME CONTINUES");
+    return continues;
 }
