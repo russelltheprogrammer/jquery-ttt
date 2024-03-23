@@ -80,7 +80,6 @@ $(document).ready( () => {
     })
 });
 
-
 const checkThreeInARow = (array) => {
     const xWin = "xwin";
     const oWin = "owin";
