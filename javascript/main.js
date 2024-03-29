@@ -18,6 +18,11 @@ $(document).ready( () => {
 
     // tic tac toe functionality
     $('.grid-item-ttt').on('click', (event) => {
+         // Early return if the clicked cell is already filled
+        if ($(event.currentTarget).text() === "X" || $(event.currentTarget).text() === "O") {
+            return;
+        }
+
         let xCount = 0;
         let oCount = 0;
         $('.grid-item-ttt').each((index, element) => {
@@ -27,15 +32,21 @@ $(document).ready( () => {
             if($(element).text()=== "X") {
                 oCount++;
             }
-          
         });
-        if($(event.currentTarget).text() !== "X" && $(event.currentTarget).text() !== "O" ) {
-            if(xCount === oCount) {
-                $(event.currentTarget).text('X').addClass('red');
-            }
-            else {
-                $(event.currentTarget).text('O').addClass('blue');
-            }
+
+        if(xCount === oCount) {
+            $(event.currentTarget).text('X').addClass('red');
+        }
+        else {
+            $(event.currentTarget).text('O').addClass('blue');
+        }
+
+        // Update the turn indicator
+        if (xCount < oCount) {
+            $('#player-turn span').removeClass('red blue').text('X').addClass('red');
+        } else {
+            $('#player-turn span').removeClass('red blue').text('O').addClass('blue');
+            console.log("Y's Turn");
         }
 
         let checkWinnerArray = [];
@@ -54,6 +65,7 @@ $(document).ready( () => {
         
         if(finishCheck === "xwin") {
             console.log("X Wins! Play again?");
+            // $('.game-over-container').show();
         }
         else if (finishCheck === "owin") { 
             console.log("O Wins! Play again?");
@@ -61,23 +73,12 @@ $(document).ready( () => {
         else if (finishCheck === "draw") { 
             console.log("Draw! Play again?");
         }
-
-        if(xCount === oCount) {
-            $('#player-turn span').removeClass();
-            $('#player-turn span').text('O').addClass('blue');
-         }
-         else {
-            $('#player-turn span').text('X').addClass('red');
-         }
     });
 
-    //reset button
-    $('.reset-button button').on('click', () => {
-        $('.grid-item-ttt').map((index, element) => {
-            $(element).removeClass('red blue').text(' ')
-        });
-        $('#player-turn span').removeClass('red blue').addClass('red').text('X');
-    })
+    // reset button
+    resetButton();
+
+    $('.game-over-container').show();
 });
 
 const checkThreeInARow = (array) => {
@@ -110,3 +111,16 @@ const checkThreeInARow = (array) => {
 
     return continues;
 }
+
+// reset game
+const resetGame = () => {
+    $('.grid-item-ttt').each((index, element) => {
+        $(element).removeClass('red blue').text(' ');
+    });
+    $('#player-turn span').removeClass('red blue').addClass('red').text('X');
+};
+
+ // reset button
+ const resetButton = () => {
+    $('.reset-button button').on('click', resetGame);
+};

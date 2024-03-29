@@ -55,9 +55,23 @@ body {
     color: red;
 }
 
+.game-over-container {
+    text-align: center;
+    align-items: center;
+    background-color: white;
+    width : 25%;
+    margin: auto;
+    padding: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    z-index: 5;
+    display: none;
+    position: fixed;
+}
+
 .reset-button { 
  margin-left: 80%;
 }
+
 .reset-button button { 
  padding: 20px;
  background-color: rgb(250, 46, 46);
